@@ -1,0 +1,8 @@
+# C++ compiled binaries
+*.exe
+*.o
+*.out
+*.app
+
+# IDE
+.vscode/
