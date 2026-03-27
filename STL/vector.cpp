@@ -2,77 +2,82 @@
 using namespace std;
 
 int main() {
-    vector<int> v; 
-    v.push_back(1) ; 
-    v.push_back(2) ; 
-    v.push_back(3) ; 
+    // Creating and adding elements to vector
+    vector<int> v;
+    v.push_back(1);
+    v.push_back(2);
+    v.push_back(3);
 
-    cout << v[0] << " " << v[1] << " " << v[2] << endl ; 
+    // Accessing elements
+    cout << v[0] << " " << v[1] << " " << v[2] << endl;
 
-    v.emplace_back(4) ; 
-    
-    vector<pair<int,int>> v1;
-    v1.push_back({1,2}) ;
-    v1.emplace_back(3,4) ;
+    // emplace_back - faster than push_back
+    v.emplace_back(4);
 
-    vector<int> v2(5, 10) ;
+    // Vector of pairs
+    vector<pair<int, int>> v1;
+    v1.push_back({1, 2});
+    v1.emplace_back(3, 4);
+
+    // Vector with initial size and value
+    vector<int> v2(5, 10);  // 5 elements, all with value 10
     for (int i = 0; i < v2.size(); i++) {
-        cout << v2[i] << " " ;
+        cout << v2[i] << " ";
     }
+    cout << endl;
 
-    vector<int>::iterator it = v.begin() ; 
-    it++ ; 
-    cout << *it << endl ;
+    // Iterators
+    vector<int>::iterator it = v.begin();
+    it++;
+    cout << *it << endl;
 
-    it = it + 2 ; 
-    cout << *it << endl ;
+    it = it + 2;
+    cout << *it << endl;
 
-    vector<int>::iterator it1 = v.end() ; 
-    vector<int>::reverse_iterator it2 = v.rend(); 
-    vector<int>::reverse_iterator it3 = v.rbegin() ; 
-    //special case for reverse iterator
-    //incrementing reverse iterator moves it backwards and decrementing it moves it forward. 
+    // Reverse iterators
+    vector<int>::reverse_iterator rit = v.rbegin();
+    cout << *rit << endl;
 
+    // Accessing elements - different ways
+    cout << v[0] << " " << v.at(0) << " " << v.back() << endl;
 
-    cout << v[0] << " " << v.at(0) ; 
-    cout << v.back() << endl ; 
-
-    //simplest way of priting a vector : 
-    for (int i = 0; i < v.size(); i++) {
-        cout << v[i] << " " ;
+    // Printing vector using range-based for loop
+    for (int val : v) {
+        cout << val << " ";
     }
+    cout << endl;
 
-    //using auto keyword to print a vector :
-    for (auto it : v) {
-        cout << it << " " ;
-    }
+    // Erase single element
+    v.erase(v.begin() + 1);
 
-    //erasing function 
-    v.erase(v.begin() + 1) ; 
+    // Erase range of elements [start, end)
+    // v.erase(v.begin() + 2, v.begin() + 4);
 
-    v.erase(v.begin() + 2 , v.begin() + 4) ; 
-    // this will erase the elements from index 2 to index 3 (4 is not included) 
+    // Insert single element
+    vector<int> v3(2, 100);  // {100, 100}
+    v3.insert(v3.begin(), 300);  // {300, 100, 100}
 
-    //inserting an element in the vector 
-    vector<int> v3(2, 100) ; // {100, 100}
-    v3.insert(v3.begin(), 300) ; // {300, 100, 100}
-    v3.insert(v3.begin() + 1, 2, 10) ; // {300, 10, 10, 100, 100} 
+    // Insert multiple copies
+    v3.insert(v3.begin() + 1, 2, 10);  // {300, 10, 10, 100, 100}
 
-    vector<int> copy(2,50) ; 
-    v3.insert(v3.begin() , copy.begin() , copy.end()) ; // {50, 50, 300, 10, 10, 100, 100}
+    // Insert range from another vector
+    vector<int> copy(2, 50);
+    v3.insert(v3.begin(), copy.begin(), copy.end());
 
-    //what's the size of the vector 
-    cout << v.size() ;
-    
-    //deleting the last element 
-    v.pop_back() ; 
+    // Size of vector
+    cout << "Size: " << v.size() << endl;
 
-    //swapping contents of two vectors 
-    v1.swap(v2) ; 
+    // Remove last element
+    v.pop_back();
 
-    //erase entire vector 
-    v.clear() ; 
+    // Swap contents of two vectors
+    v1.swap(v2);
 
-    cout << v.empty(); // if the vector is empty it will return true otherwise false 
+    // Clear entire vector
+    v.clear();
+
+    // Check if vector is empty
+    cout << "Empty: " << v.empty() << endl;
+
+    return 0;
 }
-

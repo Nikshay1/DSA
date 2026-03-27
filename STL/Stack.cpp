@@ -1,29 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main () { 
+int main() {
+    // Stack - LIFO (Last In First Out)
     /*
-    LIFO : Last In First Out
-
-    operations : 
-    1. push()
-    2. pop() 
-    3. top() 
-    4. size()
-    5. empty()
-
-    |     6       |
-    |     5       |
-    |     4       |
-    |     3       |
-    |     2       |
-    |     1       |
-    |.............|
-
+        |     3       |  <- top
+        |     2       |
+        |     1       |
+        |.............|
     */
 
-    
+    stack<int> st;
 
+    // Push elements
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.emplace(4);  // Faster than push
 
+    // Access top element
+    cout << "Top: " << st.top() << endl;
 
+    // Size
+    cout << "Size: " << st.size() << endl;
+
+    // Pop element
+    st.pop();
+    cout << "New top: " << st.top() << endl;
+
+    // Check if empty
+    cout << "Empty: " << st.empty() << endl;
+
+    // Note: Stack doesn't support iteration or random access
+
+    return 0;
 }

@@ -1,23 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main () { 
-    deque<int> dq ; 
+int main() {
+    // Creating a deque (double-ended queue)
+    deque<int> dq;
 
-    /* 
-    also have the same functions as list and vectors 
-    functions : 
-    1. push_back()
-    2. emplace_back()
-    3. push_front()
-    4. emplace_front()
+    // Adding elements
+    dq.push_back(1);
+    dq.push_back(2);
+    dq.emplace_back(3);
+    dq.push_front(0);
+    dq.emplace_front(-1);
 
-    dp.pop_back() ; 
-    dp.pop_front() ; 
-    dq.back() ; 
-    dp.front() ; 
+    // Accessing elements
+    cout << "Front: " << dq.front() << endl;
+    cout << "Back: " << dq.back() << endl;
 
-    and the rest of the functions like : 
-    begin, end, rbegin, rend, clear, insert, size, swap
-    */
+    // Random access (unlike list)
+    cout << "Element at index 2: " << dq[2] << endl;
+
+    // Removing elements
+    dq.pop_back();
+    dq.pop_front();
+
+    // Size
+    cout << "Size: " << dq.size() << endl;
+
+    // Iterating
+    for (int val : dq) {
+        cout << val << " ";
+    }
+    cout << endl;
+
+    // Other functions (same as vector and list)
+    // begin, end, rbegin, rend, clear, insert, size, swap, empty
+
+    return 0;
 }

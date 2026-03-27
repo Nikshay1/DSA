@@ -1,22 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main () { 
-    priority_queue<int> pq ; 
-    pq.push(5) ; // {5}
-    pq.push(2) ; // {5, 2}
-    pq.push(8) ; // {8, 2, 5} (8 is the largest element and it will be at the top of the priority queue)
-    cout << pq.top() << endl ; // 8
-    pq.pop() ;
-    cout << pq.top() << endl ; // 5
+int main() {
+    // Max Heap Priority Queue (default)
+    priority_queue<int> pq;
+    pq.push(5);
+    pq.push(2);
+    pq.push(8);
+    pq.emplace(10);
 
-    // size swap empty function are the same as others 
+    // Top element is always the maximum
+    cout << "Top (max): " << pq.top() << endl;  // 10
 
-    //minimum priority queue :
-    priority_queue<int, vector<int> , greater<int>> minpq ;
-    minpq.push(5) ; // {5}
-    minpq.push(2) ; // {2, 5}
-    minpq.push(8) ; // {2, 5, 8}
-    cout << minpq.top() << endl ; // 2 
+    pq.pop();
+    cout << "New top: " << pq.top() << endl;  // 8
 
+    cout << "Size: " << pq.size() << endl;
+    cout << "Empty: " << pq.empty() << endl;
+
+    // Min Heap Priority Queue
+    priority_queue<int, vector<int>, greater<int>> minPq;
+    minPq.push(5);
+    minPq.push(2);
+    minPq.push(8);
+    minPq.emplace(1);
+
+    // Top element is always the minimum
+    cout << "Min Heap Top: " << minPq.top() << endl;  // 1
+
+    // Note: Priority queue doesn't support iteration or random access
+
+    return 0;
 }

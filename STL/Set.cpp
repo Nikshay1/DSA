@@ -1,61 +1,67 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-    /*
-    It stores sorted and unique elements in a balanced binary search tree.
-    */
-
+int main() {
+    // SET - stores sorted, unique elements in a balanced BST
     set<int> st;
-    st.insert(5); // {5}
-    st.insert(2); // {2, 5}
-    st.insert(8); // {2, 5, 8}
-    st.insert(5); // {2, 5, 8} (5 is already present in the set so it will not be inserted again)
+    st.insert(5);     // {5}
+    st.insert(2);     // {2, 5}
+    st.insert(8);     // {2, 5, 8}
+    st.insert(5);     // {2, 5, 8} (duplicate, not inserted)
 
-    // {2, 5, 8}
+    cout << "Set elements: ";
+    for (int val : st) {
+        cout << val << " ";
+    }
+    cout << endl;
+
+    // Find element
     auto it = st.find(5);
+    if (it != st.end()) {
+        cout << "Found: " << *it << endl;
+    }
 
-    auto it1 = st.find(10); // it1 will be equal to st.end() because 10 is not present in the set
+    // Count occurrences (0 or 1 for set)
+    cout << "Count of 2: " << st.count(2) << endl;
 
-    st.erase(5); // {2, 8}
+    // Erase by value
+    st.erase(5);
+    cout << "Size after erase: " << st.size() << endl;
 
-    // new count function in set :
-    int cnt = st.count(2);
+    // Erase by iterator
+    st.erase(st.find(2));
 
-    auto it3 = st.find(2);
-    st.erase(it3); // {8}
+    // LOWER AND UPPER BOUND
+    st.insert(2);
+    st.insert(5);
+    st.insert(10);
 
-    // MULTISET :
+    auto lb = st.lower_bound(5);  // First element >= 5
+    auto ub = st.upper_bound(5);  // First element > 5
+
+    cout << "Lower bound of 5: " << *lb << endl;
+    cout << "Upper bound of 5: " << *ub << endl;
+
+    // MULTISET - allows duplicate elements
     multiset<int> ms;
-    ms.insert(5); // {5}
-    ms.insert(2); // {2, 5}
-    ms.insert(8); // {2, 5, 8}
-    ms.insert(5); // {2, 5, 5, 8} (5 is already present in the multiset but it will be inserted again because multiset allows duplicate elements)
+    ms.insert(5);
+    ms.insert(2);
+    ms.insert(8);
+    ms.insert(5);  // {2, 5, 5, 8} - duplicate allowed
 
+    cout << "Multiset count of 5: " << ms.count(5) << endl;
+    ms.erase(5);  // Removes ALL occurrences of 5
+    ms.insert(5);
+    ms.insert(5);
+    ms.erase(ms.find(5));  // Removes only ONE occurrence
 
-    ms.erase(5);           // {2, 8} (all the occurrences of 5 will be erased)
-    int cnt = ms.count(5); // 0 (5 is not present in the multiset)
+    // UNORDERED SET - uses hash table, not sorted
+    unordered_set<int> ust;
+    ust.insert(5);
+    ust.insert(2);
+    ust.insert(8);
+    // Faster O(1) average operations, but no ordering
+    // lower_bound/upper_bound not available
 
-    ms.erase(ms.find(5));  // {2, 5, 8} (only one occurrence of 5 will be erased)
-
-
-    auto it = ms.find(2);
-    auto it2 = next(it, 2); // only if there are at least 2 elements ahead
-    ms.erase(it, it2);
-
-    // this will erase the elements from the range [ms.find(1) , ms.find(1)+2) (1 is not present in the multiset so it will not erase anything)
-
-
-
-    //UNORDERED SET : 
-    unordered_set<int> st;
-    st.insert(5); // {5}
-    st.insert(2); // {2, 5}
-    st.insert(8); // {2, 5, 8}
-    st.insert(5); // {2, 5, 8} (5 is already present in the unordered set so it will not be inserted again)
-    //lower bound and upper bound functions are not present in unordered set because it does not store the elements in sorted order
-    //all the other things are the same 
-
-    
+    return 0;
 }

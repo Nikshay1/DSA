@@ -1,41 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main () { 
-    map<int,int> mpp ; 
-    // map<int , pair<int,int>> mpp ; 
-    // map <pair<int,int> , int> mpp ; 
+int main() {
+    // MAP - stores key-value pairs in sorted order by key (balanced BST)
+    map<int, int> mpp;
 
-    /*
-    unique key -> value pairs are stored in a balanced binary search tree (BST) and the keys are sorted in ascending order
-    */
+    // Inserting elements
+    mpp[1] = 2;           // Using [] operator
+    mpp.emplace(3, 1);    // Using emplace
+    mpp.insert({2, 4});   // Using insert
 
-    mpp[1] = 2 ; 
-    mpp.emplace(3,1) ; 
-    mpp.insert({2,4}) ; 
-
-    // {
-    //     {1,2}
-    //     {2,4}
-    //     {3,1}
-    // } stores key in sorted order 
-
+    // Elements are stored sorted by key: {1,2}, {2,4}, {3,1}
+    cout << "Map elements: ";
     for (auto it : mpp) {
-        cout << it.first << " " << it.second << endl ; 
+        cout << "{" << it.first << "," << it.second << "} ";
+    }
+    cout << endl;
+
+    // Accessing values
+    cout << "Value at key 1: " << mpp[1] << endl;
+    cout << "Value at key 5 (default 0): " << mpp[5] << endl;  // Creates key 5 with value 0
+
+    // Find element
+    auto it = mpp.find(3);
+    if (it != mpp.end()) {
+        cout << "Found key " << it->first << " with value " << it->second << endl;
     }
 
-    cout << mpp[1] ; 
-    cout << mpp[5] ; 
+    // Erase by key
+    mpp.erase(2);
 
-    auto it = mpp.find(3) ; 
-    cout << it->first << " " << it->second << endl ; 
+    // Size
+    cout << "Size: " << mpp.size() << endl;
 
+    // MULTIMAP - allows duplicate keys
+    multimap<int, int> mmpp;
+    mmpp.insert({1, 10});
+    mmpp.insert({1, 20});  // Same key, different value - allowed
 
-    //MULTIMAP ; 
-    //duplicate keys 
+    // UNORDERED MAP - uses hash table, not sorted by key
+    unordered_map<int, int> ump;
+    ump[1] = 100;
+    ump[2] = 200;
+    // Faster O(1) average operations, but no ordering
 
-    //Unordered map : 
-    // same as set and unordered set difference 
-
-    
+    return 0;
 }
